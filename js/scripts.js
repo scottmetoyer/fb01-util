@@ -1,20 +1,24 @@
-var device = null;      // The Web MIDI device
-var port = 0;           // The MIDI port to which the FB-01 is connected
+var device = null; // The Web MIDI device
+var port = 0; // The MIDI port to which the FB-01 is connected
 
 function findMidiDevices(name) {
     return navigator
-      .requestMIDIAccess()
-      .then((midiAccess) => {
-        let input, output;
-        midiAccess.inputs.forEach((currentInput) => {
-          if(currentInput.name === name) input = currentInput;
+        .requestMIDIAccess()
+        .then((midiAccess) => {
+            let input, output;
+            midiAccess.inputs.forEach((currentInput) => {
+                console.log(currentInput);
+                if (currentInput.name === name) input = currentInput;
+            });
+            midiAccess.outputs.forEach((currentOutput) => {
+                if (currentOutput.name === name) output = currentOutput;
+            })
+            return {
+                input,
+                output
+            };
         });
-        midiAccess.outputs.forEach((currentOutput) => {
-          if(currentOutput.name === name) output = currentOutput;
-        })
-        return { input, output };
-      });
-  }
+}
 
 function connect() {
     /*
@@ -36,7 +40,7 @@ function connect() {
             });
     }*/
 
-    findMidiDevices("test").then(function(result){
+    findMidiDevices("IAC Driver Bus 1").then(function (result) {
         console.log(result);
     });
 }

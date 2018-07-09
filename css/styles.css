@@ -1,0 +1,25 @@
+body {
+    padding: 10px;
+}
+
+button {
+    border: solid 1px #000;
+    background-color: #ececec;
+}
+
+button:hover {
+    background-color: #f8f8f8;
+}
+
+button:active {
+    background-color: #a8a8a8;
+}
+
+#console {
+    background-color: #000;
+    color: orange;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

@@ -1,6 +1,15 @@
 var device = null; // The Web MIDI device
 var port = 0; // The MIDI port to which the FB-01 is connected
 
+var slider = document.getElementById("slider");
+var output = document.getElementById("sliderValue");
+output.innerHTML = slider.value;
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    output.innerHTML = this.value;
+}
+
 function findMidiDevices(name) {
     return navigator
         .requestMIDIAccess()
@@ -18,6 +27,10 @@ function findMidiDevices(name) {
                 output
             };
         });
+}
+
+function inputChanged() {
+    console.log("hi");
 }
 
 function connect() {
@@ -41,7 +54,13 @@ function connect() {
     }*/
 
     findMidiDevices("IAC Driver Bus 1").then(function (result) {
-        console.log(result);
+        device = result;
+
+        if (device.input != null && device.output != null) {
+            log ("Connected to FB-01");
+        } else {
+            log ("Error: can't establish connection to FB-01")
+        }
     });
 }
 

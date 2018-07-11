@@ -17,8 +17,15 @@
 </head>
 
 <body>
-    <button id="connect" onclick="connect()">Connect</button><br>
+    <button id="connect" onclick="connect()">Connect</button>
+    <br>
     <button id="test" onclick="test()">Test</button>
+
+    <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="slider">
+    </div>
+    <span id="sliderValue"></span>
+
     <textarea id="console" rows="10"></textarea>
     <script src="js/scripts.js"></script>
 </body>
